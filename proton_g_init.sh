@@ -13,7 +13,6 @@ TMPDIR="/tmp/vaelaryn"
 echo "⛧ VaelarynOS: Proton 9.4 Setup ⛧"
 
 # Ensure sacred tools are present
-# Function to check and optionally install a command
 require_or_install() {
     local cmd="$1"
     local pkg="$2"
@@ -43,13 +42,21 @@ mkdir -p "$TMPDIR"
 cd "$TMPDIR"
 
 echo "🔻 Summoning Proton module from MEGA repository..."
-megadl "$MEGA_URL" --path "$TMPDIR/$SQUASHFS_FILE"
+megadl "$MEGA_URL"
+
+# Find the actual downloaded file, since megadl just dumps it here
+DOWNLOADED_FILE=$(find "$TMPDIR" -maxdepth 1 -type f -name "*.sqfs" | head -n 1)
+
+if [[ -z "$DOWNLOADED_FILE" ]]; then
+    echo "❌ The Squashed Codex was not conjured properly. No *.sqfs found."
+    exit 1
+fi
 
 # Integrity Verification Ritual
-if [ -n "$EXPECTED_HASH" ]; then
-    echo "🧪 Performing SHA256 sanctification of $SQUASHFS_FILE..."
-    ACTUAL_HASH=$(sha256sum "$SQUASHFS_FILE" | awk '{print $1}')
-    if [ "$ACTUAL_HASH" != "$EXPECTED_HASH" ]; then
+if [[ -n "$EXPECTED_HASH" ]]; then
+    echo "🧪 Performing SHA256 sanctification of $DOWNLOADED_FILE..."
+    ACTUAL_HASH=$(sha256sum "$DOWNLOADED_FILE" | awk '{print $1}')
+    if [[ "$ACTUAL_HASH" != "$EXPECTED_HASH" ]]; then
         echo "❌ ✖️ Corruption Detected: Hash Mismatch"
         echo "Expected: $EXPECTED_HASH"
         echo "Actual:   $ACTUAL_HASH"
@@ -62,8 +69,8 @@ fi
 # Decompression of the Codex
 echo "📦 Extracting the Squashed Codex into $PROTON_DEST..."
 mkdir -p "$PROTON_DEST"
-sudo unsquashfs -f -d "$PROTON_DEST" "$SQUASHFS_FILE"
-chown -R "$USER:$USER" "$PROTON_DEST"
+sudo unsquashfs -f -d "$PROTON_DEST" "$DOWNLOADED_FILE"
+sudo chown -R "$USER:$USER" "$PROTON_DEST"
 
 # Verify essence of Proton
 if [[ ! -f "$PROTON_DEST/proton" && ! -x "$PROTON_DEST/dist/bin/proton" ]]; then
