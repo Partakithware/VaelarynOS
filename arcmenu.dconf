@@ -1,0 +1,18 @@
+[/]
+arc-menu-icon=69
+custom-menu-button-icon-size=42.0
+enable-horizontal-flip=true
+menu-background-color='rgba(0,0,0,0.706667)'
+menu-button-active-bg-color=(true, 'rgba(0,128,201,0.236667)')
+menu-button-appearance='Icon'
+menu-button-border-radius=(false, 25)
+menu-button-hover-bg-color=(true, 'rgba(255,255,255,0.126667)')
+menu-button-icon='Menu_Icon'
+menu-layout='Sleek'
+override-menu-theme=true
+pinned-apps=[{'id': 'piavpn.desktop'}, {'id': 'microsoft-edge.desktop'}, {'id': 'code.desktop'}, {'id': 'Flathub.desktop'}, {'id': 'org.gnome.Terminal.desktop'}, {'id': 'Qbit.desktop'}, {'id': 'minecraft-launcher.desktop'}]
+prefs-visible-page=0
+recently-installed-apps=['org.gnome.tweaks.desktop']
+search-entry-border-radius=(true, 25)
+show-update-notification-v64=false
+sleek-layout-extra-shortcuts=[{'id': 'ArcMenu_Home', 'name': 'Home', 'icon': 'ArcMenu_Home'}, {'id': 'ArcMenu_Documents', 'name': 'Documents', 'icon': 'ArcMenu_Documents'}, {'id': 'ArcMenu_Downloads', 'name': 'Downloads', 'icon': 'ArcMenu_Downloads'}, {'id': 'ArcMenu_Music', 'name': 'Music', 'icon': 'ArcMenu_Music'}, {'id': 'ArcMenu_Pictures', 'name': 'Pictures', 'icon': 'ArcMenu_Pictures'}, {'id': 'org.gnome.Settings.desktop'}, {'id': 'org.gnome.Terminal.desktop'}]
