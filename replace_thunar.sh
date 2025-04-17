@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo ">>> Checking for Thunar and Baobab (Disk Usage Analyzer)..."
+echo ">>> Checking for Thunar, Baobab (Disk Usage Analyzer), and Nautilus..."
 
 # Function to uninstall if installed
 remove_if_installed() {
@@ -13,9 +13,10 @@ remove_if_installed() {
     fi
 }
 
-# Remove Thunar and Baobab if found
+# Remove unwanted file managers and utilities
 remove_if_installed thunar
 remove_if_installed baobab
+remove_if_installed nautilus
 
 # Auto-remove any orphaned dependencies
 echo ">>> Performing autoremove..."
@@ -30,4 +31,4 @@ sudo apt install -y nemo
 # echo ">>> Setting Nemo as the default file manager..."
 # xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
 
-echo ">>> Done. Thunar and Baobab removed. Nemo installed."
+echo ">>> Done. Thunar, Baobab, and Nautilus removed. Nemo installed."
